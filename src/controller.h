@@ -2,13 +2,14 @@
 #define CONTROLLER_H
 
 #include "snake.h"
+#include <memory>
 
 class Controller {
  public:
-  void HandleInput(bool &running, Snake &snake) const;
+  void HandleInput(bool &running, Snake* snake) const;
 
  private:
-  void ChangeDirection(Snake &snake, Snake::Direction input,
+  void ChangeDirection(Snake* snake, Snake::Direction input,
                        Snake::Direction opposite) const;
 };
 
