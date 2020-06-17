@@ -29,3 +29,44 @@ In this project, you can build your own C++ application or extend this Snake gam
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./SnakeGame`.
+
+## Added features
+* Created unique pointers of renderer, controller and game in main. Used move semantics to transfer ownership to game. 
+  * Rubic Points  - The project uses smart pointers instead of raw pointers.
+				  - The project uses move semantics to move data, instead of copying it, where possible.
+  * Code Location - main.h / Line - 16
+  
+* Created unique pointer for snake, food and distractors. This limited unnecessary memory utilization.
+  * Rubic Points  - The project uses smart pointers instead of raw pointers.
+  * Code Location - Game.h /Line - 25
+  
+* Added distractors to the snake game which look the same as food but have red dot in the middle to differentiate from food. They don't change score. 
+  * Rubic Points  - The project demonstrates an understanding of C++ functions and control structures.
+				  - The project uses Object Oriented Programming techniques.
+				  - Classes abstract implementation details from their interfaces.
+				  - Classes encapsulate behavior.
+  * Code Location - Game.h / Line - 40 , Game.cpp / Line - 73
+  
+* Added dictionary to place distractors and food in unique locations.
+  * Rubic Points  - The project demonstrates an understanding of C++ functions and control structures.
+				  - Classes abstract implementation details from their interfaces.
+				  - Classes encapsulate behavior.
+  * Code Location - Game.h / Line - 43 , Game.cpp / Line - 79
+  
+* Added dictionary to place food in location other than snake and also to check if snake head touches the body. This reduces the time complexity to O(1) from O(n) from earlier code.
+  * Rubic Points  - The project demonstrates an understanding of C++ functions and control structures.
+				  - Classes abstract implementation details from their interfaces.
+				  - Classes encapsulate behavior.
+  * Code Location - Snake.h / Line - 32 , Snake.cpp / Line - 50
+  
+* Added a new feature which causes the snake to die when it touches the boundaries.
+  * Rubic Points  - The project demonstrates an understanding of C++ functions and control structures.
+  * Code Location - Snake.cpp / Line - 69
+  
+* Rendered the distractors and boundaries of the windox.
+  * Rubic Points  - The project demonstrates an understanding of C++ functions and control structures.
+  * Code Location - Render.cpp / Line - 52
+
+* Made sure that passing of the variables between function is done by references or pointers at allplaces wherever possible.
+  * Rubic Points  - The project makes use of references in function declarations.
+  * Code Location - Main.cpp, Game.cpp, Snake.cpp, Render.cpp, Controller.cpp

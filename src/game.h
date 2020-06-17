@@ -12,7 +12,7 @@
 class Game {
  public:
   Game(std::size_t grid_width, std::size_t grid_height);
-  //void Run(Controller const &controller, Renderer &renderer,
+
   void Run(std::unique_ptr<Controller> controller, std::unique_ptr<Renderer> renderer,
            std::size_t target_frame_duration);
   int GetScore() const;
@@ -21,9 +21,9 @@ class Game {
   int grid_height; 
 
  private:
-  //Snake snake;
+  //Added unique pointers for snake, food and distractors
   std::unique_ptr<Snake> snake = std::make_unique<Snake>(grid_width,grid_height);
-  //SDL_Point food;
+
   std::unique_ptr<SDL_Point> food = std::make_unique<SDL_Point>();
 
   std::unique_ptr<SDL_Point[]> distractors = std::make_unique<SDL_Point[]>(5);
@@ -39,6 +39,7 @@ class Game {
   void Update();
   void PlaceDistractors();
 
+  // Keeps track so that the distractors and food dont be in the same position
   std::unordered_map<std::string,std::string> _isBlocked;
 
 };

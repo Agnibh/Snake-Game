@@ -4,7 +4,7 @@
 #include <thread>
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
-    //: snake(grid_width, grid_height),
+
     : grid_width(grid_width),
       grid_height(grid_height),
       engine(dev()),
@@ -15,7 +15,6 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
   
 }
 
-//void Game::Run(Controller const &controller, Renderer &renderer,
 void Game::Run(std::unique_ptr<Controller> controller, std::unique_ptr<Renderer> renderer,
                std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
@@ -23,7 +22,6 @@ void Game::Run(std::unique_ptr<Controller> controller, std::unique_ptr<Renderer>
   Uint32 frame_end;
   Uint32 frame_duration;
   int frame_count = 0;
-  //bool running = true;
 
   while (running) {
     frame_start = SDL_GetTicks();

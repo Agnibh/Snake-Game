@@ -1,6 +1,7 @@
 #include "renderer.h"
 #include <iostream>
 #include <string>
+#include <thread>
 
 Renderer::Renderer(const std::size_t screen_width,
                    const std::size_t screen_height,
@@ -47,7 +48,8 @@ void Renderer::Render(Snake* snake, SDL_Point* food, SDL_Point* distractors) {
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
-
+  
+  // Draw boundaries
   SDL_Rect side;
   side.w = block.w/4;
   side.h = screen_height;
@@ -67,7 +69,7 @@ void Renderer::Render(Snake* snake, SDL_Point* food, SDL_Point* distractors) {
   side.h = screen_height;
   SDL_RenderFillRect(sdl_renderer,&side);
 
-
+  // Draw Distractors
   for(int i=0;i<5;i++)
   {
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
@@ -88,7 +90,6 @@ void Renderer::Render(Snake* snake, SDL_Point* food, SDL_Point* distractors) {
 
   block.x = food->x * block.w;
   block.y = food->y * block.h;
-  //std::cout<<food->x<<","<<food->y<<"-";
   SDL_RenderFillRect(sdl_renderer, &block);
 
   // Render snake's body
@@ -105,7 +106,6 @@ void Renderer::Render(Snake* snake, SDL_Point* food, SDL_Point* distractors) {
   if (snake->alive) {
     SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
   } else {
-    //std::cout<<"b:"<<snake->alive<<"--";
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
   }
   SDL_RenderFillRect(sdl_renderer, &block);
@@ -114,7 +114,7 @@ void Renderer::Render(Snake* snake, SDL_Point* food, SDL_Point* distractors) {
   SDL_RenderPresent(sdl_renderer);
 }
 
-void Renderer::UpdateWindowTitle(int &score, int fps) {
+void Renderer::UpdateWindowTitle(int &score, int& fps) {
   std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

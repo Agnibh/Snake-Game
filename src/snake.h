@@ -5,14 +5,6 @@
 #include <vector>
 #include <unordered_map>
 
-class MyHashFunction
-{
-  public:
-  size_t operator()(const SDL_Point& p) const
-  {
-    return std::stoi(std::to_string(p.x)+std::to_string(p.y));
-  }
-};
 
 class Snake {
  public:
@@ -37,7 +29,8 @@ class Snake {
   float head_x;
   float head_y;
   std::vector<SDL_Point> body;
-  std::unordered_map<std::string,std::string> _isBlocked;
+  std::unordered_map<std::string,std::string> _isBlocked;  // Keeps track if the snake head lands on its body or not
+                                                           // Also keeps track so that the food doesn't land on snake 
 
  private:
   void UpdateHead();

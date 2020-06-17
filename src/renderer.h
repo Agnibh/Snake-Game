@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "snake.h"
 #include <memory>
+#include <thread>
 
 class Renderer {
  public:
@@ -13,7 +14,7 @@ class Renderer {
   ~Renderer();
 
   void Render(Snake* snake, SDL_Point* food, SDL_Point* distractors);
-  void UpdateWindowTitle(int& score, int fps);
+  void UpdateWindowTitle(int& score, int& fps);
 
  private:
   SDL_Window *sdl_window;
